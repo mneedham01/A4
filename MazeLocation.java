@@ -14,16 +14,21 @@ public class MazeLocation {
   /** The column number */
   private int col;
 
+  /** If it has been visited */
+  private boolean visited;
+
   /** Constructor from two ints */
   public MazeLocation(int row, int col) {
     this.row = row;
     this.col = col;
+    this.visited = false;
   }
 
   /** Copy constructor */
   public MazeLocation(MazeLocation p) {
     row = p.row;
     col = p.col;
+    visited = p.visited;
   }
 
   /** accessor for the row number */
@@ -46,7 +51,7 @@ public class MazeLocation {
     this.col = col;
   }
 
-  /** 
+  /**
     *  Test for equality between coordinates
     *
     *  @param loc The coordinate to compare to
@@ -56,7 +61,7 @@ public class MazeLocation {
     return (this.row == loc.row)&&(this.col == loc.col);
   }
 
-  /** 
+  /**
     *  Return a neighboring coordinate in the chosen direction
     *
     *  @param dir Direction to move
@@ -81,8 +86,8 @@ public class MazeLocation {
       return result;
     }
 
-      /** 
-      *  Return a neighboring coordinate in the reverse of the 
+      /**
+      *  Return a neighboring coordinate in the reverse of the
       *  specified direction
       *
       *  @param dir Direction to move in reverse to
@@ -114,5 +119,15 @@ public class MazeLocation {
     */
   public String toString() {
     return "("+row+","+col+")";
+  }
+
+  /** @return whether the location has been visited */
+  public boolean getVisited() {
+    return this.visited;
+  }
+
+  /** sets this.visited  */
+  public void setVisited(boolean visited) {
+    this.visited = visited;
   }
 }
