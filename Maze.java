@@ -5,7 +5,6 @@ public class Maze implements DisplayableMaze {
     MazeContents[][] grid =  {{MazeContents.OPEN, MazeContents.OPEN, MazeContents.OPEN, MazeContents.WALL}, {MazeContents.WALL, MazeContents.WALL, MazeContents.OPEN, MazeContents.WALL}, {MazeContents.WALL, MazeContents.WALL, MazeContents.OPEN, MazeContents.WALL}, {MazeContents.WALL, MazeContents.WALL, MazeContents.OPEN, MazeContents.OPEN}};
     MazeLocation start = new MazeLocation(0,0);
     MazeLocation finish = new MazeLocation(3,3);
-    MazeLocation current = start;
 
     /* Constructor */
     public Maze () {
@@ -15,7 +14,6 @@ public class Maze implements DisplayableMaze {
     public Maze (MazeLocation start, MazeLocation finish) {
         this.start = start;
         this.finish = finish;
-        this.current = start;
     }
 
     /** @return height of maze grid */
@@ -45,8 +43,4 @@ public class Maze implements DisplayableMaze {
         return this.finish;
     }
 
-    /** @return current location in the maze */
-    public MazeLocation getCurrent() {
-        return this.current;
-    }
 }
