@@ -44,4 +44,9 @@ public class Maze implements DisplayableMaze {
     public MazeLocation getFinish(){
         return this.finish;
     }
+
+    /** @return current location in the maze */
+    public MazeLocation getCurrent() {
+        return this.current;
+    }
 }
