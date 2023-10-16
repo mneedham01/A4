@@ -14,26 +14,16 @@ public class MazeLocation {
   /** The column number */
   private int col;
 
-  /** If it has been visited */
-  private boolean visited;
-
-  /** If it is on the path to finish */
-  private boolean onPath;
-
   /** Constructor from two ints */
   public MazeLocation(int row, int col) {
     this.row = row;
     this.col = col;
-    this.visited = false;
-    this.onPath = false;
   }
 
   /** Copy constructor */
   public MazeLocation(MazeLocation p) {
     row = p.row;
     col = p.col;
-    visited = p.visited;
-    onPath = p.onPath;
   }
 
   /** accessor for the row number */
@@ -124,20 +114,5 @@ public class MazeLocation {
     */
   public String toString() {
     return "("+row+","+col+")";
-  }
-
-  /** @return whether the location has been visited */
-  public boolean getVisited() {
-    return this.visited;
-  }
-
-  /** sets this.visited  */
-  public void setVisited(boolean visited) {
-    this.visited = visited;
-  }
-
-  /** sets this.onPath  */
-  public void setOnPath(boolean onPath) {
-    this.onPath = onPath;
   }
 }
