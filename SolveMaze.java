@@ -1,30 +1,30 @@
 
 class SolveMaze {
 
-  // set up enum values
-  MazeDirection NORTH;
-  MazeDirection EAST;
-  MazeDirection SOUTH;
-  MazeDirection WEST;
-
   /** */
   public boolean checkLocation (Maze maze, MazeLocation current) {
 
+    System.out.println("Called checkLocation on square: "+ current.getRow() + current.getCol());
+
     // if current is final location in maze
     if (current.equals(maze.getFinish())) {
+      System.out.println("Current = finish.");
       // mark current as part of path
-      current.setOnPath(true);
+      maze.grid[current.getRow()][current.getCol()] = MazeContents.PATH;
       return true;
     }
+    MazeContents contentsAtCurrent = maze.getContents(current.getRow(), current.getCol());
     // if current is a wall or already visited
-    if (current.getVisited() || maze.getContents(current.getRow(), current.getCol()).equals(MazeContents.WALL)) {
+    if (contentsAtCurrent.equals(MazeContents.VISITED) || contentsAtCurrent.equals(MazeContents.WALL)) {
+      System.out.println("Current = wall OR Current = already visited.");
       return false;
     }
     else {
-      current.setVisited(true);
+      System.out.println("In the else.");
+      maze.grid[current.getRow()][current.getCol()] = MazeContents.VISITED;;
       try { Thread.sleep(50);	} catch (InterruptedException e) {};
       if (checkLocation(maze, current.neighbor(MazeDirection.NORTH)) || checkLocation(maze, current.neighbor(MazeDirection.SOUTH)) || checkLocation(maze, current.neighbor(MazeDirection.EAST)) || checkLocation(maze, current.neighbor(MazeDirection.WEST))) {
-        current.setOnPath(true);
+        maze.grid[current.getRow()][current.getCol()] = MazeContents.PATH;
       }
     }
     return true;
