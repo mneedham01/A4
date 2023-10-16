@@ -17,11 +17,15 @@ public class MazeLocation {
   /** If it has been visited */
   private boolean visited;
 
+  /** If it is on the path to finish */
+  private boolean onPath;
+
   /** Constructor from two ints */
   public MazeLocation(int row, int col) {
     this.row = row;
     this.col = col;
     this.visited = false;
+    this.onPath = false;
   }
 
   /** Copy constructor */
@@ -129,5 +133,10 @@ public class MazeLocation {
   /** sets this.visited  */
   public void setVisited(boolean visited) {
     this.visited = visited;
+  }
+
+  /** sets this.onPath  */
+  public void setOnPath(boolean onPath) {
+    this.onPath = onPath;
   }
 }
