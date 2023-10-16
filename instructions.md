@@ -1,6 +1,6 @@
 # Assignment 4:  Recursive Maze Solving
 
-For this assignment, you will write a program for solving mazes using **recursion**. The "big idea" is as follows: each time you explore a location in the maze will correspond to a recursive call, so that when you find the exit, the path taken there from the start will be stored _implicitly on the call stack_. 
+For this assignment, you will write a program for solving mazes using **recursion**. The "big idea" is as follows: each time you explore a location in the maze will correspond to a recursive call, so that when you find the exit, the path taken there from the start will be stored _implicitly on the call stack_.
 
 This assignment pulls together many pieces that we have learned separately into a closely interacting whole. We have also provided some support code to drive the graphics, described in greater detail below.
 
@@ -18,7 +18,7 @@ Once you have filled out the maze grid, the other methods should be pretty strai
 
 For phase two you will implement a recursive "solver" for the maze.  Here are details of the process:
 
-**Problem Statement**: 
+**Problem Statement**:
 Given a location and a map (showing walls, open regions, and areas that have been already explored), determine whether the exit can be reached by moving through adjacent open squares without passing through a wall or previously visited square.
 
 **Starting Condition**:

@@ -30,7 +30,7 @@ public class Maze implements DisplayableMaze {
 
     /** @return contents of maze grid at row i, column j */
     public MazeContents getContents(int i, int j) {
-        return this.grid[i][j];
+        return (i > this.getHeight() || j > this.getWidth()) ? MazeContents.WALL : this.grid[i][j];
     }
 
     /** @return location of maze start point */

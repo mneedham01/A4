@@ -33,6 +33,7 @@ public class MazeLocation {
     row = p.row;
     col = p.col;
     visited = p.visited;
+    onPath = p.onPath;
   }
 
   /** accessor for the row number */
