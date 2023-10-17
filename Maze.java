@@ -1,17 +1,29 @@
 
-/* fakjla;kfldj */
+/* Maze class stores information about maze, including the 2D array, start, and finish */
 public class Maze implements DisplayableMaze {
 
-    MazeContents[][] grid =  {{MazeContents.OPEN, MazeContents.OPEN, MazeContents.OPEN, MazeContents.WALL}, {MazeContents.WALL, MazeContents.WALL, MazeContents.OPEN, MazeContents.WALL}, {MazeContents.WALL, MazeContents.WALL, MazeContents.OPEN, MazeContents.WALL}, {MazeContents.WALL, MazeContents.WALL, MazeContents.OPEN, MazeContents.OPEN}};
-    MazeLocation start = new MazeLocation(0,0);
-    MazeLocation finish = new MazeLocation(3,3);
+    // to hard code a maze
+    //MazeContents[][] grid =  {{MazeContents.OPEN, MazeContents.OPEN, MazeContents.OPEN, MazeContents.WALL}, {MazeContents.WALL, MazeContents.WALL, MazeContents.OPEN, MazeContents.WALL}, {MazeContents.WALL, MazeContents.WALL, MazeContents.OPEN, MazeContents.WALL}, {MazeContents.WALL, MazeContents.WALL, MazeContents.OPEN, MazeContents.OPEN}};
+    //MazeLocation start = new MazeLocation(0,0);
+    //MazeLocation finish = new MazeLocation(3,3);
 
-    /* Constructor */
+    MazeContents[][] grid;
+    MazeLocation start;
+    MazeLocation finish;
+
+    /** @return Maze */
     public Maze () {
     }
 
-     /* Constructor */
+     /** @return Maze */
     public Maze (MazeLocation start, MazeLocation finish) {
+        this.start = start;
+        this.finish = finish;
+    }
+
+    /** @return Maze */
+    public Maze (MazeLocation start, MazeLocation finish, MazeContents[][] grid) {
+        this.grid = grid;
         this.start = start;
         this.finish = finish;
     }
@@ -46,5 +58,33 @@ public class Maze implements DisplayableMaze {
     public MazeLocation getFinish(){
         return this.finish;
     }
+
+    /** @return whether the maze can be solved given an individual location  */
+    public boolean solve (MazeLocation current) {
+        // if current is final location in maze
+        if (current.equals(this.getFinish())) {
+            // mark current as part of path
+            this.grid[current.getRow()][current.getCol()] = MazeContents.PATH;
+            return true;
+        }
+        MazeContents contentsAtCurrent = this.getContents(current.getRow(), current.getCol());
+        // if current is a wall or already visited
+        if (contentsAtCurrent == MazeContents.VISITED || contentsAtCurrent  == MazeContents.WALL) {
+            return false;
+        }
+        // if current is not the final location, not a wall, and not already visited
+        // set current to visited
+        this.grid[current.getRow()][current.getCol()] = MazeContents.VISITED;;
+        // delay for graphics
+        try { Thread.sleep(10);	} catch (InterruptedException e) {};
+        // check in each direction
+        if (solve(current.neighbor(MazeDirection.NORTH)) || solve(current.neighbor(MazeDirection.SOUTH)) || solve(current.neighbor(MazeDirection.EAST)) || solve(current.neighbor(MazeDirection.WEST))) {
+            this.grid[current.getRow()][current.getCol()] = MazeContents.PATH;
+            return true;
+        } else {
+            this.grid[current.getRow()][current.getCol()] = MazeContents.DEAD_END;
+            return false;
+        }
+  }
 
 }
